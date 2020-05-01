@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 
 
 function RenderCampsite(props) {
-     const {campsite} = props
+    const {campsite} = props
     if (campsite) {
         return (
             <Card
