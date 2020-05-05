@@ -4,6 +4,7 @@ import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
+import Favorites from './FavoritesComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator,
     DrawerItems } from 'react-navigation';
@@ -89,6 +90,29 @@ const ReservationNavigator = createStackNavigator(
             },
             headerLeft: <Icon
                 name='tree'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
+const FavoritesNavigator = createStackNavigator(
+    {
+        Favorites: { screen: Favorites }
+    },
+    {
+        navigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='heart'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -198,6 +222,20 @@ const MainNavigator = createDrawerNavigator(
                 drawerIcon: ({tintColor}) => (
                     <Icon
                         name='tree'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                    />
+                )
+            }
+        },
+        Favorites: {
+            screen: FavoritesNavigator,
+            navigationOptions: {
+                drawerLabel: 'My Favorites',
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='heart'
                         type='font-awesome'
                         size={24}
                         color={tintColor}
